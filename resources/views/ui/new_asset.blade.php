@@ -9,6 +9,13 @@
         
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#link').click(function(){
+
+        });
+    });
+</script>
 @stop
 @section('content')
  <div class="row">
@@ -19,7 +26,7 @@
                             <li class="active"><a href="#general" data-toggle="tab">General</a></li>
                             <li ><a href="#asset" data-toggle="tab">Link Asset</a></li>
                             <li><a href="#image" data-toggle="tab">Link Image</a></li>
-                            <li><a href="#attachements" data-toggle="tab">Attachements</a></li>
+                          {{--   <li><a href="#attachements" data-toggle="tab">Attachements</a></li> --}}
                             <li><a href="#maintenance" data-toggle="tab">Maintenance</a></li>
                             <li><a href="#contracts" data-toggle="tab">Contracts</a></li>
                             <li><a href="#transaction" data-toggle="tab">Transaction History</a></li>
@@ -37,9 +44,9 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="general">@include('ui.new_asset.general')</div>
                         <div class="tab-pane fade" id="asset">@include('ui.new_asset.asset')</div>
-                        <div class="tab-pane fade" id="image">Primary 3</div>
-                        <div class="tab-pane fade" id="attachements">Primary 4</div>
-                        <div class="tab-pane fade" id="maintenance">Primary 5</div>
+                        <div class="tab-pane fade" id="image">@include('ui.new_asset.image')</div>
+                        {{-- <div class="tab-pane fade" id="attachements">@include('ui.new_asset.atta')</div> --}}
+                        <div class="tab-pane fade" id="maintenance">@include('ui.new_asset.maintenance')</div>
                         <div class="tab-pane fade" id="contracts">Primary 5</div>
                         <div class="tab-pane fade" id="transaction">Primary 5</div>
                         <div class="tab-pane fade" id="transaction">Primary 5</div>
@@ -49,3 +56,4 @@
         </div>
  </div>
 @stop
+
