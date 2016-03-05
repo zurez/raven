@@ -11,4 +11,9 @@
 |
 */
 
-Route::get('/','PageController@dashboard');
+// Route::get('/','PageController@dashboard');
+Route::get('general','PageController@general');
+Route::post('general','AssetController@store_asset');
+Route::get('all/assets',array('as'=>'all_asset','uses'=>'AssetController@all_asset'));
+Route::get('link/image','PageController@link_image');
+Route::get('link/asset','PageController@link_asset');

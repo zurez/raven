@@ -3,41 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\models\Asset;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class AssetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function store_asset(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'site' => 'required',
+            'serial_number' => 'required|unique:assets|min:1',
+            'condition'=>'required',
+            'asset_type' => 'required',
+            'manufacturer' => 'required',
+            'vendor_number'=>'required',
+            'location'=>'required',
+            'asset_tag'=>'required',
+            
+            'model' => 'required',
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+       
+        ]);
+       try {
+           $asset= new Asset;
+           $asset->site=$request->site;
+           $asset->serial_number=$request->serial_number;
+           $asset->condition=$request->condition;
+           $asset->asset_type=$request->asset_type;
+           $asset->manufacturer=$request->manufacturer;
+           $asset->vendor_number=$request->vendor_number;
+           $asset->location=$request->location;
+           $asset->asset_tag=$request->asset_tag;
+           $asset->additional_info=$request->additional_info;
+           $asset->asset_type_desc=$request->asset_description;
+           $asset->model=$request->model;
+           // $asset->=$request->; 
+           $asset->save();
+           return back()->with('message','Asset added');
+       } catch (\Exception $e) {
+           return "Not Saved";
+       }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function all_asset()
     {
-        //
+
+        $assets = Asset::all();
+        return view('ui.all_asset')->with('title','All Assets')->with('asset',$assets);
     }
 
     /**
