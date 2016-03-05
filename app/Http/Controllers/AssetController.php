@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\Asset;
+use App\models\Maintenance;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -52,49 +53,55 @@ class AssetController extends Controller
         $assets = Asset::all();
         return view('ui.all_asset')->with('title','All Assets')->with('asset',$assets);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show_maintenance($id)
+    {  
+        try {
+            $main_array= Maintenance::where('asset_id',$id)->get();
+            return view('ui.all_maintenance')->with('maintain',$main_array)->with('title','All Maintenance')->with('asset_id',$id);
+        } catch (\Exception $e) {
+            
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function all_maintenance()
     {
-        //
+        # 
+        $id="null";
+          try {
+            $main_array= Maintenance::all();
+            return view('ui.all_maintenance')->with('maintain',$main_array)->with('title','All Maintenance')->with('asset_id',$id);
+        } catch (\Exception $e) {
+            
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function show_add_maintenance($asset_id)
     {
-        //
+        return view('ui.add_maintenance')->with('asset_id',$asset_id)->with('title','Add New Maintenance');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function add_maintenance(Request $request)
     {
-        //
+             $this->validate($request, [
+            'maintenance_name' => 'required',
+            'assigned_to' => 'required|min:1',
+            'assigned_date'=>'required',
+            'warranty_begin' => 'required',
+            'warranty_ends'=>'required',
+            'contact'=>'required'
+       
+        ]);
+             try{
+            $main= new Maintenance;
+            $main->asset_id=$request->asset_id;
+            $main->asset_tag_id= $request->asset_tag_id;
+            $main->maintenance_name=$request->maintenance_name;
+            $main->assigned_to= $request->assigned_to;
+            $main->assigned_date=$request->assigned_date;
+            $main->warranty_begin= $request->warranty_begin;
+            $main->warranty_ends=$request->warranty_ends;
+            $main->contact=$request->contact;
+            $main->save();
+            return "Maintenance Saved";
+        }catch(\Exception $e){
+            return "Not Saved";
+        }
     }
 }

@@ -15,6 +15,7 @@ class CreateMaintenanceTable extends Migration
         Schema::create('maintenance', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('asset_id')->unsigned();
+            $table->string('asset_tag_id');
             $table->string('maintenance_name');
             $table->string('assigned_to');
             $table->date('assigned_date');

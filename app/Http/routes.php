@@ -15,5 +15,11 @@
 Route::get('general','PageController@general');
 Route::post('general','AssetController@store_asset');
 Route::get('all/assets',array('as'=>'all_asset','uses'=>'AssetController@all_asset'));
+Route::get('all/maintenance','AssetController@all_maintenance');
 Route::get('link/image','PageController@link_image');
 Route::get('link/asset','PageController@link_asset');
+Route::get('asset/maintenance/{id}','AssetController@show_maintenance');
+Route::get('asset/delete/{id}','AssetController@delete_asset');
+Route::get('asset/edit/{id}','AssetController@@edit_asset');
+Route::get('maintenance/add/{id}','AssetController@show_add_maintenance');
+Route::post('maintenance/adding','AssetController@add_maintenance');
