@@ -14,6 +14,7 @@
 	<table id="data" class="table-striped col-md-12">
 		<thead>
 			<tr>
+				<th>Asset Tag</th>
 				<th>Serial Number</th>
 				<th>Site</th>
 				<th>Condition</th>
@@ -29,6 +30,7 @@
 		<tbody>
 			@foreach($asset as $ass)
 			<tr class="margin-bottom-sm">
+				<td>{{$ass->asset_tag}}</td>
 				<td>{{$ass->serial_number}}</td>
 				<td>{{$ass->site}}</td>
 				<td>{{$ass->condition}}</td>

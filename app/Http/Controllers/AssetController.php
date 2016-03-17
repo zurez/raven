@@ -142,7 +142,7 @@ class AssetController extends Controller
             $main->warranty_ends=$request->warranty_ends;
             $main->contact=$request->contact;
             $main->save();
-            return "Maintenance Saved";
+            return redirect()->action('AssetController@show_maintenance',$main->asset_id);
         }catch(\Exception $e){
             return "Not Saved";
         }
