@@ -24,7 +24,7 @@
             <li><a href="#">Link Image</a></li>
             <li><a href="{{url('all/maintenance')}}">Maintenance</a></li>
             <li><a href="#">Contracts</a></li>
-            <li><a href="#">Transaction History</a></li>
+            <li><a href="{{url('transaction/all')}}">Transaction History</a></li>
             <li>
               <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse3" aria-expanded="false" aria-controls="nav-collapse3">Search</a>
             </li>

@@ -27,3 +27,15 @@ Route::post('asset/edit/{id}','AssetController@save_edit');
 Route::get('maintenance/add/{id}','AssetController@show_add_maintenance');
 Route::post('maintenance/adding','AssetController@add_maintenance');
 Route::get("asset/view/{id}","AssetController@view_asset");
+
+// Transactions
+Route::get('transaction/all',"TransactionController@show_all");
+Route::get('transaction/show/{id}',"TransactionController@show");
+//show form
+Route::get('transaction/new/{id}','TransactionController@index');
+Route::post('transaction/new/{id}','TransactionController@store');
+//del
+Route::get('transaction/delete/{id}','TransactionController@destroy');
+//update
+Route::get('transaction/updated/{id}','TransactionController@show_update');
+Route::post('transaction/updated/{id}','TransactionController@update');

@@ -43,6 +43,7 @@
 					<a href="{{url('asset/edit',$ass->id)}}" class="btn btn-primary">Edit </a> &nbsp
 					<a href="{{url('asset/delete',$ass->id)}}" class="btn btn-danger">Delete </a>
 					<a href="{{url('asset/maintenance',$ass->id)}}" class="btn btn-success">Maintenance </a>
+					<a href="{{url('transaction/show',$ass->id)}}" class="btn btn-primary">Transaction </a>
 
 				</td>
 			</tr>
