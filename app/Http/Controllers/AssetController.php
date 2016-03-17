@@ -47,11 +47,54 @@ class AssetController extends Controller
            return "Not Saved";
        }
     }
+    public function edit($id)
+    {
+      // return "ff";
+      $asset=Asset::find($id);
+      if ($asset!=null) {
+        # code...
+        return view('ui.edit_asset')->with('asset',$asset)->with('title',"Edit Asset");
+      }
+      return "Asset with this id not found";
+
+    }
+    public function save_edit(Request $request)
+    {
+        $id= $request->id;
+        if ($id==null) {
+          # code...
+          return "Bad Request";
+        }
+        $asset=Asset::find($id);
+         $asset->site=$request->site;
+         $asset->serial_number=$request->serial_number;
+         $asset->condition=$request->condition;
+         $asset->asset_type=$request->asset_type;
+         $asset->manufacturer=$request->manufacturer;
+         $asset->vendor_number=$request->vendor_number;
+         $asset->location=$request->location;
+         $asset->asset_tag=$request->asset_tag;
+         $asset->additional_info=$request->additional_info;
+         $asset->asset_type_desc=$request->asset_description;
+         $asset->model=$request->model;
+        $asset->save();
+        return redirect()->action('AssetController@view_asset',$id);
+    }
+    public function view_asset($id)
+    {
+      $asset=Asset::find($id);
+       return view("ui.single_asset")->with('title',$asset->name)->with('asset',$asset);
+    }
     public function all_asset()
     {
 
         $assets = Asset::all();
         return view('ui.all_asset')->with('title','All Assets')->with('asset',$assets);
+    }
+    public function delete_asset($id)
+    {
+        Asset::destroy($id);
+        return back();
     }
     public function show_maintenance($id)
     {  
