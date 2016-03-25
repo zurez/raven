@@ -77,6 +77,7 @@
 			<td>{{$tr->}}</td>
  --}}
 		</tr>
+        @endforeach
 		@endforeach
 	</tbody>
 </table>
