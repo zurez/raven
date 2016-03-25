@@ -57,12 +57,18 @@
 	</thead>
 	<tbody>
 		@foreach($trans as $tr)
+            @foreach($asset as $as)
 		<tr>
 			<td>{{$tr->id}}</td>
-            <td>{{$asset->asset_tag}}</td>
+            @if ($tr->asset_id==$as->id)
+            <td>{{$as->asset_tag}}</td>
+            @endif
 			<td>{{$tr->type}}</td>
 			<td>{{$tr->action}}</td>
-			<td>${{$asset->costs}}</td>
+            @if ($tr->asset_id==$as->id)
+            <td>{{$as->costs}}</td>
+            @endif
+			{{-- <td>${{$asset->costs}}</td> --}}
 			<td>{{$tr->notes}}</td>
 			<td>{{$tr->created_at}}</td>
 			<td>{{$tr->updated_at}}</td>
