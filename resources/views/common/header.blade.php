@@ -18,7 +18,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-3">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{url('general')}}">Add Asset</a></li>
+            <li><a href="{{url('/')}}">Add Asset</a></li>
             <li><a href="{{url('all/assets')}}">Assets</a></li>
             <li><a href="#">Link Asset</a></li>
             <li><a href="#">Link Image</a></li>

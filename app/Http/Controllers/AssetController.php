@@ -51,6 +51,7 @@ class AssetController extends Controller
            $asset->save();
            return back()->with('message','<div class ="alert alert-success"> Asset added </div>');
        } catch (\Exception $e) {
+
            return "Not Saved";
        }
     }
@@ -151,15 +152,15 @@ class AssetController extends Controller
             'maintenance_name' => 'required',
             'assigned_to' => 'required|min:1',
             'assigned_date'=>'required',
-            'warranty_begin' => 'required',
-            'warranty_ends'=>'required',
+            
             'contact'=>'required'
        
         ]);
+             // return $request->asset_tag_id;
              try{
             $main= new Maintenance;
             $main->asset_id=$request->asset_id;
-            $main->asset_tag_id= $request->asset_tag_id;
+            // $main->asset_tag_id= $request->asset_tag_id;
             $main->maintenance_name=$request->maintenance_name;
             $main->assigned_to= $request->assigned_to;
             $main->assigned_date=$request->assigned_date;
@@ -168,6 +169,7 @@ class AssetController extends Controller
             $main->save();
             return redirect()->action('AssetController@show_maintenance',$main->asset_id);
         }catch(\Exception $e){
+          return $e;
             return "Not Saved";
         }
     }

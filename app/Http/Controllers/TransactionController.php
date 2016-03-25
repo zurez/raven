@@ -49,7 +49,7 @@ class TransactionController extends Controller
             // 'serial_number' => 'required|unique:assets|min:1',
             'action'=>'required',
             'notes' => 'required',
-            'costs' => 'required|numeric',
+            // 'costs' => 'required|numeric',
             // 'vendor_number'=>'required',
             // 'location'=>'required',
             // 'asset_tag'=>'required',
@@ -72,7 +72,7 @@ class TransactionController extends Controller
         $trans->asset_id=$request->id;
         $trans->type=$request->type;
         $trans->notes=$request->notes;
-        $trans->costs=$request->costs;
+
         // $trans->=$request->;
 
 
@@ -90,7 +90,8 @@ class TransactionController extends Controller
     public function show($id)
     {
         $tran= Trans::where('asset_id',$id)->get();
-        $asset = Asset::where('id',$id)->get();
+        $asset = Asset::where('id',$id)->first();
+   
         // return $tran;
         return view("ui.new_tran.single_trans")->with('title',"Transaction")->with('trans',$tran)->with('asset_id',$id)->with('asset',$asset);
     }

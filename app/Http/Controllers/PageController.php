@@ -17,4 +17,9 @@ class PageController extends Controller
     {
         return view('ui.new_asset.general')->with('title','Add Asset');
     }
+    public function dashboard()
+    {
+    	# code...
+    	return redirect()->action('PageController@general');
+    }
 }

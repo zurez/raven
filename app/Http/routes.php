@@ -19,12 +19,12 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/',function(){
-	return "please go to <a href='general'>Click Here</a>";
-});
-// Route::get('/','PageController@dashboard');;
-Route::get('general','PageController@general');
-Route::post('general','AssetController@store_asset');
+// Route::get('/',function(){
+// 	return "please go to <a href='general'>Click Here</a>";
+// });
+Route::get('/','PageController@dashboard');;
+Route::get('add/asset','PageController@general');
+Route::post('add/asset','AssetController@store_asset');
 Route::get('all/assets',array('as'=>'all_asset','uses'=>'AssetController@all_asset'));
 Route::get('all/maintenance','AssetController@all_maintenance');
 Route::get('link/image','PageController@link_image');

@@ -26,7 +26,7 @@
 		@foreach($trans as $main)
 		<tr>
 			<td>{{$main->id}}</td>
-			<td>{{$asset->tag}}</td>
+			<td>{{$asset->asset_tag}}</td>
 			<td>{{$main->type}}</td>
 			<td>{{$main->action}}</td>
 			<td>{{$main->notes}}</td>
