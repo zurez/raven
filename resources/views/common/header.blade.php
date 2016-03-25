@@ -18,13 +18,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-3">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{url('general')}}">General</a></li>
+            <li><a href="{{url('general')}}">Add Asset</a></li>
             <li><a href="{{url('all/assets')}}">Assets</a></li>
             <li><a href="#">Link Asset</a></li>
             <li><a href="#">Link Image</a></li>
-            <li><a href="{{url('all/maintenance')}}">Maintenance</a></li>
+            <li><a href="{{url('all/maintenance')}}">Maintenance History</a></li>
             <li><a href="#">Contracts</a></li>
             <li><a href="{{url('transaction/all')}}">Transaction History</a></li>
+            @if(Auth::check())
+              <li><a href="{{url('auth/logout')}}">Logout</a></li>
+            @endif
             <li>
               <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse3" aria-expanded="false" aria-controls="nav-collapse3">Search</a>
             </li>

@@ -14,6 +14,7 @@
 <table class="form-striped col-md-12" id="data">
 	<thead>
 		<th>Transaction ID</th>
+		<th>Asset Tag</th>
 		<th>Type</th>
 		<th>Action</th>
 		<th>Notes</th>
@@ -25,10 +26,11 @@
 		@foreach($trans as $main)
 		<tr>
 			<td>{{$main->id}}</td>
+			<td>{{$asset->tag}}</td>
 			<td>{{$main->type}}</td>
 			<td>{{$main->action}}</td>
 			<td>{{$main->notes}}</td>
-			<td>${{$main->costs}}</td>
+			<td>${{$asset->costs}}</td>
 			<td>{{$main->created_at}}</td>
 			<td>{{$main->update_at or "no updates"}}</td>
 	{{-- 		<td>{{$main->}}</td>

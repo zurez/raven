@@ -19,7 +19,7 @@ class CreateTransactionHistory extends Migration
             $table->string('type');
             $table->string('action');
             $table->string('notes');
-            $table->string('costs');
+            // $table->string('costs');
             $table->timestamps();
         });
     }}

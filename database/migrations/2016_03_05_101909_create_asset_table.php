@@ -27,6 +27,11 @@ class CreateAssetTable extends Migration
             $table->string('additional_info');
             $table->string('asset_type_desc');
             $table->string('model');
+            $table->string('costs');
+            $table->date('warranty_begin');
+            $table->date('warranty_ends');
+            $table->string("creator");
+            $table->string("last_updated_by");
             $table->timestamps();
         });
     }

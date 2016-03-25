@@ -21,8 +21,9 @@ class CreateMaintenanceTable extends Migration
             $table->date('assigned_date');
             $table->string('instructions');
             $table->string('contact');
-            $table->date('warranty_begin');
-            $table->date('warranty_ends');
+            $table->string('creator');
+            $table->string('last_updated_by');
+          
             $table->timestamps();
         });
     }

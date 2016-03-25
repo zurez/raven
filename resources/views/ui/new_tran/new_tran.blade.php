@@ -16,6 +16,9 @@
                         @endforeach
             @endif
 </div>
+<div class="row">
+<h3>Asset Tag: {{$asset->asset_tag}}</h3>
+</div>
     {!! Form::open() !!}
     <div class="row">
         <div class="col-md-6">
@@ -44,10 +47,10 @@
             <label>Notes</label>
             <input type="text"  name="notes" class="form-control trans" id="notes">
         </div>
-        <div class="col-md-6">
+    {{--     <div class="col-md-6">
             <label>Costs</label>
             <input type="text" name="costs" class="form-control trans" id="asset_tag">
-        </div>
+        </div> --}}
     </div>
    {{--  <div class="row">
         <div class="col-md-6">

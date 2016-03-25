@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Asset;
 use App\models\Trans;
 use App\Http\Requests;
+use Auth;
 use App\Http\Controllers\Controller;
 
 class TransactionController extends Controller
@@ -15,13 +16,16 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function index($id)
+      public function __construct()
     {
-    // {   $f= Asset::find($id);
+        $this->middleware('auth');
+    }
+    public function index($id)
+    
+    {   $f= Asset::find($id);
     //     return $f;
       
-        return view('ui.new_tran.new_tran')->with('title', "Add Transaction")->with('id',$id);
+        return view('ui.new_tran.new_tran')->with('title', "Add Transaction")->with('id',$id)->with('asset',$f);
     }
 
     /**
@@ -86,8 +90,9 @@ class TransactionController extends Controller
     public function show($id)
     {
         $tran= Trans::where('asset_id',$id)->get();
+        $asset = Asset::where('id',$id)->get();
         // return $tran;
-        return view("ui.new_tran.single_trans")->with('title',"Transaction")->with('trans',$tran)->with('asset_id',$id);
+        return view("ui.new_tran.single_trans")->with('title',"Transaction")->with('trans',$tran)->with('asset_id',$id)->with('asset',$asset);
     }
 
     /**

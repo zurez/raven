@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\models\Asset;
 use App\models\Maintenance;
@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 
 class AssetController extends Controller
 {
-    
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function store_asset(Request $request)
     {
         $this->validate($request, [
@@ -21,8 +24,8 @@ class AssetController extends Controller
             'manufacturer' => 'required',
             'vendor_number'=>'required',
             'location'=>'required',
-            'asset_tag'=>'required',
-            
+            'asset_tag'=>'required|unique:assets',
+            'costs' => 'required|numeric',
             'model' => 'required',
 
        
@@ -39,10 +42,14 @@ class AssetController extends Controller
            $asset->asset_tag=$request->asset_tag;
            $asset->additional_info=$request->additional_info;
            $asset->asset_type_desc=$request->asset_description;
+            $asset->warranty_begin= $request->warranty_begin;
+            $asset->warranty_ends=$request->warranty_ends;
+           $asset->costs=$request->costs;
+           $asset->creator=Auth::user()->id;
            $asset->model=$request->model;
            // $asset->=$request->; 
            $asset->save();
-           return back()->with('message','Asset added');
+           return back()->with('message','<div class ="alert alert-success"> Asset added </div>');
        } catch (\Exception $e) {
            return "Not Saved";
        }
@@ -65,6 +72,20 @@ class AssetController extends Controller
           # code...
           return "Bad Request";
         }
+             $this->validate($request, [
+            'site' => 'required',
+            'serial_number' => 'required|unique:assets|min:1',
+            'condition'=>'required',
+            'asset_type' => 'required',
+            'manufacturer' => 'required',
+            'vendor_number'=>'required',
+            'location'=>'required',
+            'asset_tag'=>'required|unique:assets',
+            'costs' => 'required|numeric',
+            'model' => 'required',
+
+       
+        ]);
         $asset=Asset::find($id);
          $asset->site=$request->site;
          $asset->serial_number=$request->serial_number;
@@ -77,6 +98,9 @@ class AssetController extends Controller
          $asset->additional_info=$request->additional_info;
          $asset->asset_type_desc=$request->asset_description;
          $asset->model=$request->model;
+         $asset->warranty_begin= $request->warranty_begin;
+         $asset->warranty_ends=$request->warranty_ends;
+         $asset->last_updated_by=Auth::user()->id;
         $asset->save();
         return redirect()->action('AssetController@view_asset',$id);
     }
@@ -118,7 +142,8 @@ class AssetController extends Controller
     }
     public function show_add_maintenance($asset_id)
     {
-        return view('ui.add_maintenance')->with('asset_id',$asset_id)->with('title','Add New Maintenance');
+        $f = Asset::find($asset_id);
+        return view('ui.add_maintenance')->with('asset_id',$asset_id)->with('title','Add New Maintenance')->with('asset',$f);
     }
     public function add_maintenance(Request $request)
     {
@@ -138,8 +163,7 @@ class AssetController extends Controller
             $main->maintenance_name=$request->maintenance_name;
             $main->assigned_to= $request->assigned_to;
             $main->assigned_date=$request->assigned_date;
-            $main->warranty_begin= $request->warranty_begin;
-            $main->warranty_ends=$request->warranty_ends;
+            
             $main->contact=$request->contact;
             $main->save();
             return redirect()->action('AssetController@show_maintenance',$main->asset_id);

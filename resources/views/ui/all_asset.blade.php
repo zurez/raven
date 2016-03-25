@@ -8,6 +8,11 @@
     $('#data').DataTable();
 });
 </script>
+<style type="text/css">
+	tr{
+		margin-bottom: 100px;
+	}
+</style>
 @stop
 @section('content')
 <div class="row">
@@ -20,7 +25,7 @@
 				<th>Condition</th>
 				<th>Asset Type</th>
 				<th>Manufacturer</th>
-				<th>Vendor Number</th>
+				<th>Vendor</th>
 				<th>Location</th>
 				<th>Model</th>
 				<th>Action</th>
@@ -29,7 +34,7 @@
 		</thead>
 		<tbody>
 			@foreach($asset as $ass)
-			<tr class="margin-bottom-sm">
+			<tr class="">
 				<td>{{$ass->asset_tag}}</td>
 				<td>{{$ass->serial_number}}</td>
 				<td>{{$ass->site}}</td>
@@ -40,11 +45,12 @@
 				<td>{{$ass->location}}</td>
 				<td>{{$ass->model}}</td>
 				<td>
-					<a href="{{url('asset/edit',$ass->id)}}" class="btn btn-primary">Edit </a> &nbsp
-					<a href="{{url('asset/delete',$ass->id)}}" class="btn btn-danger">Delete </a>
-					<a href="{{url('asset/maintenance',$ass->id)}}" class="btn btn-success">Maintenance </a>
-					<a href="{{url('transaction/show',$ass->id)}}" class="btn btn-primary">Transaction </a>
-
+					<a href="{{url('asset/edit',$ass->id)}}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+					{{-- <a href="" class="btn btn-primary">Edit </a> &nbsp --}}
+					<a href="{{url('asset/delete',$ass->id)}}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+					<a href="{{url('asset/maintenance',$ass->id)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-cog"></span> Maint</a>
+					<a href="{{url('transaction/show',$ass->id)}}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-registration-mark"></span> Tran</a>
+		
 				</td>
 			</tr>
 			@endforeach
