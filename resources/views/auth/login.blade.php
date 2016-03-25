@@ -6,8 +6,8 @@
     {!! csrf_field() !!}
 
     <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }} " class="form-control">
+        Username    
+        <input type="text" name="email" value="{{ old('email') }} " class="form-control">
     </div>
 
     <div>
