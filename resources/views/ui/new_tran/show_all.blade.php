@@ -29,11 +29,16 @@
 			<td>{{$tr->id}}</td>
             @if ($tr->asset_id==$as->id)
             <td>{{$as->asset_tag}}</td>
+            @else
+            <td>"No asset tag found"</td>
             @endif
 			<td>{{$tr->type}}</td>
 			<td>{{$tr->action}}</td>
             @if ($tr->asset_id==$as->id)
             <td>{{$as->costs}}</td>
+            @else{
+            <td>No Cost found</td>
+            }
             @endif
 			{{-- <td>${{$asset->costs}}</td> --}}
 			<td>{{$tr->notes}}</td>

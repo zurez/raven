@@ -132,7 +132,12 @@ class TransactionController extends Controller
     public function show_all()
     {
         $trans=Trans::all();
-        $asset= Asset::all();
+        $ids= array();
+        foreach ($trans as $k) {
+            # code...
+            array_push($ids, $k->asset_id);
+        }
+        $asset= Asset::whereIn('id',$ids)->get();
         return view('ui.new_tran.show_all')->with('title',"Transaction History")->with('trans',$trans)->with('asset',$asset);
     }
 }
