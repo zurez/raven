@@ -14,6 +14,11 @@ class AssetController extends Controller
     {
         $this->middleware('auth');
     }
+    public function index()
+    {
+      # code...
+      return redirect()->action('AssetController@all_asset');
+    }
     public function store_asset(Request $request)
     {
         $this->validate($request, [

@@ -70,6 +70,7 @@ class TransactionController extends Controller
         $trans= new Trans;
         $trans->action=$request->action;
         $trans->asset_id=$request->id;
+        $trans->asset_tag=$request->asset_tag;
         $trans->type=$request->type;
         $trans->notes=$request->notes;
 

@@ -1,17 +1,21 @@
 @extends('common.default')
 @section('head')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
- 
-<script type="text/javascript" src="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.11/api/sum().js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-    $('#data').DataTable();
+  $(document).ready(function() {
+    $('#data').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
 } );
+
 </script>
 @stop
 @section('content')
 <div class="row">
-<table class="form-striped col-md-12" id="data" cellspacing="0" width="100%">
+<table class="table" id="data" cellspacing="0" width="100%">
 	<thead>
 		<th>Transaction ID</th>
         <th>Asset Tag</th>
@@ -22,6 +26,12 @@
 		<th>Created At</th>
 		<th>Updated At</th>
 	</thead>
+	 <tfoot>
+            <tr>
+                <th colspan="4" style="text-align:right">Total:</th>
+                <th></th>
+            </tr>
+        </tfoot>
 	<tbody>
 		@foreach($trans as $tr)
             @foreach($asset as $as)

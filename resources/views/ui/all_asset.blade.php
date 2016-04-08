@@ -1,11 +1,15 @@
 @extends('common.default')
 @section('head')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
- 
-<script type="text/javascript" src="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
-    $('#data').DataTable();
+    $('#data').DataTable({
+    	dom: 'Bfrtip',
+    	"pageLength": 30,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
 });
 </script>
 <style type="text/css">
@@ -16,7 +20,7 @@
 @stop
 @section('content')
 <div class="row">
-	<table id="data" class="table-striped col-md-12">
+	<table id="data" class="table-striped" class="display" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th>Asset Tag</th>
@@ -28,7 +32,9 @@
 				<th>Vendor</th>
 				<th>Location</th>
 				<th>Model</th>
+				@if(Auth::user()->role=="admin")
 				<th>Action</th>
+				@endif
 			</tr>
 			
 		</thead>
@@ -44,14 +50,19 @@
 				<td>{{$ass->vendor_number}}</td>
 				<td>{{$ass->location}}</td>
 				<td>{{$ass->model}}</td>
+					@if(Auth::user()->role=="admin")
 				<td>
+				
 					<a href="{{url('asset/edit',$ass->id)}}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 					{{-- <a href="" class="btn btn-primary">Edit </a> &nbsp --}}
+
 					<a href="{{url('asset/delete',$ass->id)}}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+
 					<a href="{{url('asset/maintenance',$ass->id)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-cog"></span> Maint</a>
 					<a href="{{url('transaction/show',$ass->id)}}" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-registration-mark"></span> Tran</a>
-		
+					
 				</td>
+				@endif
 			</tr>
 			@endforeach
 		</tbody>

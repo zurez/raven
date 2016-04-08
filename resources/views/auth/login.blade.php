@@ -1,13 +1,25 @@
 @extends('common.default')
 @section('content')
+<div class="row">
+    @if (count($errors) > 0)
+
+                
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">
+                            {{ $error }} </div>
+                        @endforeach
+     @endif
+     <div class="row">
+
 <div class="col-md-4"> </div>
 <div class="col-md-4">
+
 <form method="POST" class="form ">
     {!! csrf_field() !!}
 
     <div>
         Username    
-        <input type="text" name="email" value="{{ old('email') }} " class="form-control">
+        <input type="text" name="username" value="{{old('username')}} " class="form-control">
     </div>
 
     <div>

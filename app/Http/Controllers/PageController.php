@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\models\log;
 class PageController extends Controller
 {
 	  public function __construct()
@@ -21,5 +21,10 @@ class PageController extends Controller
     {
     	# code...
     	return redirect()->action('PageController@general');
+    }
+    public function logs()
+    {
+        $logs= log::all();
+        return view('logs.log')->with('logs',$logs);
     }
 }

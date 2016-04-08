@@ -144,6 +144,10 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Custom
+        TomLingham\Searchy\SearchyServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -193,6 +197,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Form' => Illuminate\Html\FormFacade::class,
+        'Searchy' => TomLingham\Searchy\Facades\Searchy::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

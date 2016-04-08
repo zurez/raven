@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "illuminate/html": "^5.0",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "tom-lingham/searchy" : "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -36,9 +37,7 @@
         ],
         "post-update-cmd": [
             "php artisan clear-compiled",
-            "php artisan optimize",
-            "mkdir public/bootstrap",
-            "cp -R vendor/twbs/bootstrap/dist public/bootstrap"
+            "php artisan optimize"
         ],
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""

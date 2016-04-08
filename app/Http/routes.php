@@ -16,13 +16,16 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-
+Route::get('user/register', 'UserController@create');
+Route::post('user/register', 'UserController@store');
+Route::get('user/actions','UserController@actions');
 // Route::get('/',function(){
 // 	return "please go to <a href='general'>Click Here</a>";
 // });
-Route::get('/','PageController@dashboard');;
+Route::get('logs','PageController@logs');
+Route::get('/search','SearchController@show_search_page');
+Route::post('/search','SearchController@search');
+Route::get('/','AssetController@index');;
 Route::get('add/asset','PageController@general');
 Route::post('add/asset','AssetController@store_asset');
 Route::get('all/assets',array('as'=>'all_asset','uses'=>'AssetController@all_asset'));

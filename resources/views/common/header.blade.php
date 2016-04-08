@@ -18,27 +18,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-3">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{url('/')}}">Add Asset</a></li>
+          
+            <li><a href="{{url('add/asset')}}">Add Asset</a></li>
             <li><a href="{{url('all/assets')}}">Assets</a></li>
-            <li><a href="#">Link Asset</a></li>
-            <li><a href="#">Link Image</a></li>
+            
             <li><a href="{{url('all/maintenance')}}">Maintenance History</a></li>
-            <li><a href="#">Contracts</a></li>
+          {{--   <li><a href="#">Contracts</a></li> --}}
             <li><a href="{{url('transaction/all')}}">Transaction History</a></li>
             @if(Auth::check())
+              @if(Auth::user()->role=="admin")
+              <li><a href="{{url('user/actions')}}">Users</a></li>
+              @endif
+            <li><a href="{{url('logs')}}">Logs</a></li>
               <li><a href="{{url('auth/logout')}}">Logout</a></li>
             @endif
             <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse3" aria-expanded="false" aria-controls="nav-collapse3">Search</a>
+              <a href="{{url('search')}}" class="btn">Search</a>
+              
             </li>
           </ul>
-          <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" />
-              </div>
-              <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </form>
+          <div class="collapse nav navbar-nav nav-collapse slide-left " id="nav-collapse3">
+           {{-- @include('search') --}}
           </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->

@@ -19,6 +19,7 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
+    protected $username = 'username';
 
     use AuthenticatesAndRegistersUsers;
 
@@ -42,8 +43,9 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'role'=>'required'
         ]);
     }
 
@@ -57,7 +59,8 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'username' => $data['username'],
+            'role'=>$data['role'],
             'password' => bcrypt($data['password']),
         ]);
     }
