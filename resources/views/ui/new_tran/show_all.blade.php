@@ -6,7 +6,10 @@
     $('#data').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'copy', 'csv', {
+            	extend:'excel',
+            	exportOptions:{columns:[0,1,2,3,4,5,6,7,8]}
+            }, 'pdf', 'print'
         ]
     } );
 } );
@@ -15,6 +18,7 @@
 @stop
 @section('content')
 <div class="row">
+<h4>Grand Total Expense: <span style= "color:red;">$ {{$cost or ""}}</span></h4>
 <table class="table" id="data" cellspacing="0" width="100%">
 	<thead>
 		<th>Transaction ID</th>
@@ -34,22 +38,15 @@
         </tfoot>
 	<tbody>
 		@foreach($trans as $tr)
-            @foreach($asset as $as)
+     
 		<tr>
 			<td>{{$tr->id}}</td>
-            @if ($tr->asset_id==$as->id)
-            <td>{{$as->asset_tag}}</td>
-            @else
-            <td>"No asset tag found"</td>
-            @endif
+            <td>{{$tr->asset_tag}}</td>
+           
 			<td>{{$tr->type}}</td>
 			<td>{{$tr->action}}</td>
-            @if ($tr->asset_id==$as->id)
-            <td>{{$as->costs}}</td>
-            @else{
-            <td>No Cost found</td>
-            }
-            @endif
+          
+            <td>${{$tr->costs}}</td>
 			{{-- <td>${{$asset->costs}}</td> --}}
 			<td>{{$tr->notes}}</td>
 			<td>{{$tr->created_at}}</td>
@@ -59,7 +56,7 @@
 			<td>{{$tr->}}</td>
  --}}
 		</tr>
-        @endforeach
+     
 		@endforeach
 	</tbody>
 </table>

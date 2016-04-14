@@ -15,11 +15,12 @@ class CreateTransactionHistory extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('asset_id');
+            $table->string('asset_tag');
             $table->date('date');
             $table->string('type');
             $table->string('action');
             $table->string('notes');
-            // $table->string('costs');
+            $table->string('costs');
             $table->string('creator');
             $table->string('last_updated_by');
             $table->timestamps();

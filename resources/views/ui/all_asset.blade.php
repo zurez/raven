@@ -7,8 +7,15 @@
     	dom: 'Bfrtip',
     	"pageLength": 30,
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+            'copy', 'csv', 
+             {
+            	extend:'excel',
+            	exportOptions:{columns:[0,1,2,3,4,5,6,7,8]}
+            },'pdf', 'print'
+        ],
+        // 
+         
+        // 
     });
 });
 </script>
@@ -33,7 +40,7 @@
 				<th>Location</th>
 				<th>Model</th>
 				@if(Auth::user()->role=="admin")
-				<th>Action</th>
+				<th class="no-export">Action</th>
 				@endif
 			</tr>
 			
@@ -51,7 +58,7 @@
 				<td>{{$ass->location}}</td>
 				<td>{{$ass->model}}</td>
 					@if(Auth::user()->role=="admin")
-				<td>
+				<td class="no-export">
 				
 					<a href="{{url('asset/edit',$ass->id)}}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 					{{-- <a href="" class="btn btn-primary">Edit </a> &nbsp --}}

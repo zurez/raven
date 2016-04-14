@@ -22,6 +22,13 @@
 		<th>Created At</th>
 		<th>Updated At</th>
 	</thead>
+	<tfoot>
+            <tr>
+                <th colspan="4" style="text-align:right">Total:</th>
+                <th></th>
+            </tr>
+        </tfoot>
+	<tbody>
 	<tbody>
 		@foreach($trans as $main)
 		<tr>
@@ -30,7 +37,7 @@
 			<td>{{$main->type}}</td>
 			<td>{{$main->action}}</td>
 			<td>{{$main->notes}}</td>
-			<td>${{$asset->costs}}</td>
+			<td>${{$main->costs}}</td>
 			<td>{{$main->created_at}}</td>
 			<td>{{$main->update_at or "no updates"}}</td>
 	{{-- 		<td>{{$main->}}</td>

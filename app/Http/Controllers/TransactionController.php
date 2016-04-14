@@ -73,7 +73,7 @@ class TransactionController extends Controller
         $trans->asset_tag=$request->asset_tag;
         $trans->type=$request->type;
         $trans->notes=$request->notes;
-
+        $trans->costs= $request->costs;
         // $trans->=$request->;
 
 
@@ -133,12 +133,13 @@ class TransactionController extends Controller
     public function show_all()
     {
         $trans=Trans::all();
-        $ids= array();
+        // $ids= array();
+        $cost=0;
         foreach ($trans as $k) {
             # code...
-            array_push($ids, $k->asset_id);
+            $cost= $cost+ floatval($k->costs);
         }
-        $asset= Asset::whereIn('id',$ids)->get();
-        return view('ui.new_tran.show_all')->with('title',"Transaction History")->with('trans',$trans)->with('asset',$asset);
+        // $asset= Asset::whereIn('id',$ids)->get();
+        return view('ui.new_tran.show_all')->with('title',"Transaction History")->with('trans',$trans)->with('cost',$cost);
     }
 }

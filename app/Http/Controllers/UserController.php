@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\models\log;
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth; 
@@ -121,6 +122,7 @@ class UserController extends Controller
     public function actions()
     {
         # code...
-        return view('user.menu');
+        $users=DB::table('users')->get();
+        return view('user.menu')->with('users',$users);
     }
 }

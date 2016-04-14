@@ -52,7 +52,7 @@
             <input type="text" name="costs" class="form-control trans" id="asset_tag">
         </div>
     </div>
-    <input type="hidden" name="asset_tag" value="={{$asset->asset_tag}}">
+    <input type="hidden" name="asset_tag" value="{{$asset->asset_tag}}">
    {{--  <div class="row">
         <div class="col-md-6">
             <label>Condition</label>
