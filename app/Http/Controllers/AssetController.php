@@ -54,7 +54,7 @@ class AssetController extends Controller
            $asset->model=$request->model;
            // $asset->=$request->; 
            $asset->save();
-           $message= "Asset with tag ".$request->asset_tag." has been added.";
+           $message= "Asset ".$request->asset_tag." has been added.";
            return view('action')->with('message',$message);
        } catch (\Exception $e) {
 
@@ -109,7 +109,7 @@ class AssetController extends Controller
          $asset->warranty_ends=$request->warranty_ends;
          $asset->last_updated_by=Auth::user()->id;
         $asset->save();
-                   $message= "Asset with tag ".$request->asset_tag." has been updated";
+                   $message= "Asset ".$request->asset_tag." has been updated";
            return view('action')->with('message',$message);
         // return redirect()->action('AssetController@view_asset',$id);
     }
