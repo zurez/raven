@@ -125,7 +125,7 @@
       @endif
       @if($type=="trans")
         <thead>
-          <th>Asset ID</th>
+          <th>Asset Tag</th>
           <th>Date</th>
           <th>Type</th>
           <th>Action</th>
@@ -134,9 +134,10 @@
 
         </thead>
         <tbody>
+        
         @foreach($results as $r)
         
-        <td>{{$r->asset_id}}</td>
+        <td>{{$r->asset_tag}}</td>
         <td>{{$r->date}}</td>
         <td>{{$r->type}}</td>
         <td>{{$r->action}}</td>

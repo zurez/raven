@@ -5,7 +5,8 @@
 <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-    $('#data').DataTable();
+    $('#data').DataTable(
+    	);
 });
 </script>
 @stop

@@ -96,8 +96,9 @@
     </div> --}}
     <div class="row">
         <div class="col-md-6 ">
-           {{--  <label>Vendor Number</label>
-            <input type="text" name="vendor_number" class="form-control trans" id="vendor_number"> --}}
+            <label>Date</label>
+            <input type="date" name="date" class="form-control trans" id="date">
+
             <input type="hidden" name="id" value="{{$id}}">
         </div>
         <div class="col-md-6">

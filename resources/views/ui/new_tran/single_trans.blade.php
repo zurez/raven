@@ -28,7 +28,7 @@
                 <th></th>
             </tr>
         </tfoot>
-	<tbody>
+	
 	<tbody>
 		@foreach($trans as $main)
 		<tr>

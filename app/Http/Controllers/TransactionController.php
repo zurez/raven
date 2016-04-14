@@ -49,6 +49,7 @@ class TransactionController extends Controller
             // 'serial_number' => 'required|unique:assets|min:1',
             'action'=>'required',
             'notes' => 'required',
+            'date'=>'required'
             // 'costs' => 'required|numeric',
             // 'vendor_number'=>'required',
             // 'location'=>'required',
@@ -73,6 +74,7 @@ class TransactionController extends Controller
         $trans->asset_tag=$request->asset_tag;
         $trans->type=$request->type;
         $trans->notes=$request->notes;
+        $trans->date= $request->date;
         $trans->costs= $request->costs;
         // $trans->=$request->;
 

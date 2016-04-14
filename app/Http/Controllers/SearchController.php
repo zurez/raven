@@ -46,7 +46,8 @@ class SearchController extends Controller
         }
         if ($request->target="trans") {
             # code...
-            $a=DB::table('assets')->whereBetween('created_at',[$s,$e])->get();
+            $a=DB::table('transactions')->whereBetween('created_at',[$s,$e])->get();
+
             $cost=0;
             foreach ($a as $b) {
                 # code...
