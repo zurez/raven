@@ -25,7 +25,7 @@
         <th>Asset Tag</th>
 		<th>Type</th>
 		<th>Action</th>
-		<th>Costs</th>
+		<th>Cost</th>
 		<th>Notes</th>
 		<th>Created At</th>
 		<th>Updated At</th>
