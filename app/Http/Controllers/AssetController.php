@@ -54,7 +54,8 @@ class AssetController extends Controller
            $asset->model=$request->model;
            // $asset->=$request->; 
            $asset->save();
-           return back()->with('message','<div class ="alert alert-success"> Asset added </div>');
+           $message= "Asset with tag ".$request->asset_tag." has been added.";
+           return view('action')->with('message',$message);
        } catch (\Exception $e) {
 
            return "Not Saved";
@@ -80,13 +81,13 @@ class AssetController extends Controller
         }
              $this->validate($request, [
             'site' => 'required',
-            'serial_number' => 'required|unique:assets|min:1',
+            'serial_number' => 'required|min:1',
             'condition'=>'required',
             'asset_type' => 'required',
             'manufacturer' => 'required',
             'vendor_number'=>'required',
             'location'=>'required',
-            'asset_tag'=>'required|unique:assets',
+            'asset_tag'=>'required',
             'costs' => 'required|numeric',
             'model' => 'required',
 
@@ -108,7 +109,9 @@ class AssetController extends Controller
          $asset->warranty_ends=$request->warranty_ends;
          $asset->last_updated_by=Auth::user()->id;
         $asset->save();
-        return redirect()->action('AssetController@view_asset',$id);
+                   $message= "Asset with tag ".$request->asset_tag." has been updated";
+           return view('action')->with('message',$message);
+        // return redirect()->action('AssetController@view_asset',$id);
     }
     public function view_asset($id)
     {

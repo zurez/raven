@@ -18,7 +18,7 @@
 @stop
 @section('content')
 <div class="row">
-<h4>Grand Total Expense: <span style= "color:red;">$ {{$cost or ""}}</span></h4>
+<h4>Total Expense: <span style= "color:red;">$ {{$cost or ""}}</span></h4>
 <table class="table" id="data" cellspacing="0" width="100%">
 	<thead>
 		<th>Transaction ID</th>

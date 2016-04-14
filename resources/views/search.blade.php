@@ -16,7 +16,6 @@
  @stop
  @section('content')
  <div id="search-form" class="row">
-
 {!! Form::open() !!}
               <div class="form row">
                 <div class="col-md-3"> <span class="st">Search</span> <select name="target" class="form-control general" id="target">

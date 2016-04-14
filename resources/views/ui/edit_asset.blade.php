@@ -148,15 +148,24 @@
 				
 		</div>
 	</div>
-	<div class="row">
+	<div class="row ">
 		<div class="col-md-6 ">
-			<label>Vendor Number</label>
+			<label>Vendor</label>
 			<input type="text" name="vendor_number" value="{{$asset->vendor_number}}" class="form-control general" id="vendor_number">
 			
 		</div>
-		<div class="col-md-6">
-		<p>&nbsp</p>
-			<input type="submit"  class="btn btn-primary form-control" id="done" value="Update">
+		<div class="col-md-6"> 
+		<label>Cost</label>
+			<input type="text" name="costs" value="{{$asset->costs}}" class="form-control general" id="costs">
+			
+		</div>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="col-md-6 pull-right">
+		<div class="row"> </div>
+				<input type="submit"  class="btn btn-primary " id="done" value="Update">
 		</div>
 	</div>
 	{!! Form::close() !!}
