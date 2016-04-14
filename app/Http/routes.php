@@ -25,7 +25,7 @@ Route::get('user/actions','UserController@actions');
 Route::get('logs','PageController@logs');
 Route::get('/search','SearchController@show_search_page');
 Route::post('/search','SearchController@search');
-Route::get('home','AssetController@index');;
+Route::get('/','AssetController@index');;
 Route::get('add/asset','PageController@general');
 Route::post('add/asset','AssetController@store_asset');
 Route::get('all/assets',array('as'=>'all_asset','uses'=>'AssetController@all_asset'));
