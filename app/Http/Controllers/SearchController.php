@@ -11,6 +11,10 @@ use DB;
 // use Requests;
 class SearchController extends Controller
 {
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function show_search_page()
     {
         # code...
