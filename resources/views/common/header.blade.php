@@ -27,15 +27,16 @@
             <li><a href="{{url('transaction/all')}}">Transaction History</a></li>
             @if(Auth::check())
               @if(Auth::user()->role=="admin")
+                          <li>
+              <a href="{{url('search')}}" class="btn">Search</a>
+              
+            </li>
               <li><a href="{{url('user/actions')}}">Users</a></li>
               @endif
             <li><a href="{{url('logs')}}">Logs</a></li>
               <li><a href="{{url('auth/logout')}}">Logout</a></li>
             @endif
-            <li>
-              <a href="{{url('search')}}" class="btn">Search</a>
-              
-            </li>
+
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-left " id="nav-collapse3">
            {{-- @include('search') --}}
