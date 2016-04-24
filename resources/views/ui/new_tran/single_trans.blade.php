@@ -20,7 +20,9 @@
 		<th>Notes</th>
 		<th>Costs</th>
 		<th>Created At</th>
-		<th>Updated At</th>
+				@if(Auth::user()->role=="admin")
+		<th class="no-export">Action</th>
+		@endif
 	</thead>
 	<tfoot>
             <tr>
@@ -39,7 +41,14 @@
 			<td>{{$main->notes}}</td>
 			<td>${{$main->costs}}</td>
 			<td>{{$main->created_at}}</td>
-			<td>{{$main->update_at or "no updates"}}</td>
+					@if(Auth::user()->role=="admin")
+			<td class="no-export">
+									<a href="{{url('transaction/updated',$main->id)}}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+					{{-- <a href="" class="btn btn-primary">Edit </a> &nbsp --}}
+
+					<a href="{{url('transaction/delete',$main->id)}}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+			</td>
+			@endif
 	{{-- 		<td>{{$main->}}</td>
 			<td>{{$main->}}</td>
  --}}

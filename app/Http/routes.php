@@ -49,5 +49,6 @@ Route::post('transaction/new/{id}','TransactionController@store');
 //del
 Route::get('transaction/delete/{id}','TransactionController@destroy');
 //update
-Route::get('transaction/updated/{id}','TransactionController@show_update');
+Route::get('transaction/updated/{id}','TransactionController@edit');
 Route::post('transaction/updated/{id}','TransactionController@update');
+

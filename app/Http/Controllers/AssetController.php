@@ -5,6 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\models\Asset;
 use App\models\Maintenance;
+use App\models\Trans;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -127,6 +128,9 @@ class AssetController extends Controller
     public function delete_asset($id)
     {
         Asset::destroy($id);
+        Maintenance::where('asset_id',$id)->delete();
+        Trans::where('asset_id',$id)->delete();
+
         return back();
     }
     public function show_maintenance($id)

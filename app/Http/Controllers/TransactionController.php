@@ -93,8 +93,9 @@ class TransactionController extends Controller
     public function show($id)
     {
         $tran= Trans::where('asset_id',$id)->get();
+        // return $tran
         $asset = Asset::where('id',$id)->first();
-   
+        // return $id;
         // return $tran;
         return view("ui.new_tran.single_trans")->with('title',"Transaction")->with('trans',$tran)->with('asset_id',$id)->with('asset',$asset);
     }
@@ -107,7 +108,9 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $trans= Trans::find($id);
+
+        return view('ui.new_tran.edit')->with('trans',$trans);
     }
 
     /**
@@ -117,9 +120,40 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+            $this->validate($request, [
+
+            'type' => 'required',
+            // 'serial_number' => 'required|unique:assets|min:1',
+            'action'=>'required',
+            'notes' => 'required',
+            'date'=>'required'
+            // 'costs' => 'required|numeric',
+            // 'vendor_number'=>'required',
+            // 'location'=>'required',
+            // 'asset_tag'=>'required',
+            
+            // 'model' => 'required',
+
+       
+        ]);
+        $id= $request->id;
+        $trans=Trans::find($id);
+        $trans->action=$request->action;
+        // $trans->asset_id=$request->id;
+        // $trans->asset_tag=$request->asset_tag;
+        $trans->type=$request->type;
+        $trans->notes=$request->notes;
+        $trans->date= $request->date;
+        $trans->costs= $request->costs;
+        $trans->save();
+
+        $asset_id=Asset::where('asset_tag',$trans->asset_tag)->pluck('id');
+
+        return $this->show($asset_id);
+
     }
 
     /**
@@ -130,7 +164,8 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Trans::destroy($id);
+        return $this->show_all();
     }
     public function show_all()
     {
